@@ -25,4 +25,11 @@ dependencies {
         exclude(group = "dev.opencollab", module = "libdatachannel-java")
     }
     jarInJar(libs.libdatachannel.java.arch.detect)
+    jarInJar("com.microsoft.signalr.messagepack:signalr-messagepack:9.0.4")
+    // SignalR still requests MessagePack 0.8.20 and Jackson 2.9 transitively.
+    // Keep the embedded adapter and Jackson 2 jars compatible with Jackson 3 hosts.
+    jarInJar("org.msgpack:jackson-dataformat-msgpack:0.9.12")
+    jarInJar("com.fasterxml.jackson.core:jackson-annotations:2.22")
+    jarInJar("com.fasterxml.jackson.core:jackson-core:2.22.3")
+    jarInJar("com.fasterxml.jackson.core:jackson-databind:2.22.3")
 }
