@@ -1,19 +1,33 @@
 pluginManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-        maven("https://maven.florianreuth.de/releases")
-        maven("https://maven.fabricmc.net/")
-    }
+    includeBuild("build-logic")
 
-    plugins {
-        id("net.fabricmc.fabric-loom") version "1.17-SNAPSHOT"
-        id("de.florianreuth.baseproject") version "3.0.3"
+    repositories {
+        gradlePluginPortal()
+        maven("https://maven.fabricmc.net/")
     }
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("base.settings")
+    id("base.fabric_settings")
+}
+
+dependencyResolutionManagement {
+    repositories {
+        maven("https://repo.viaversion.com")
+        maven("https://maven.lenni0451.net/everything")
+        maven("https://repo.opencollab.dev/maven-snapshots") {
+            content {
+                includeGroupByRegex("org\\.cloudburstmc\\..+")
+                includeGroup("dev.opencollab")
+            }
+        }
+        maven("https://jitpack.io") {
+            content {
+                includeGroup("com.github.oryxel1")
+            }
+        }
+    }
 }
 
 rootProject.name = "viafabricplus-bedrock"
